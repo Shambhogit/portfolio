@@ -1,0 +1,270 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Outfit:wght@100..900&family=Space+Grotesk:wght@300..700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Portfolio Design System - Dark, Elegant, Modern */
+
+
+@layer base {
+  :root {
+    /* Dark Portfolio Theme */
+    --background: 222 14% 4%;
+    --foreground: 220 25% 95%;
+
+    --card: 224 15% 8%;
+    --card-foreground: 220 25% 95%;
+
+    --popover: 224 15% 8%;
+    --popover-foreground: 220 25% 95%;
+
+    --primary: 271 100% 65%;
+    --primary-foreground: 220 25% 95%;
+
+    --secondary: 193 100% 60%;
+    --secondary-foreground: 220 25% 95%;
+
+    --muted: 222 14% 12%;
+    --muted-foreground: 215 20% 65%;
+
+    --accent: 271 100% 65%;
+    --accent-foreground: 220 25% 95%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 220 25% 95%;
+
+    --border: 222 14% 12%;
+    --input: 222 14% 12%;
+    --ring: 271 100% 65%;
+
+    --radius: 0.75rem;
+
+    /* Custom Portfolio Colors - Simplified */
+    --electric-purple: 271 100% 65%;
+    --electric-blue: 210 100% 60%;
+    --cyan-glow: 193 100% 60%;
+    --deep-space: 222 14% 4%;
+    --cosmic-gray: 222 14% 8%;
+    --stellar-white: 220 25% 95%;
+    
+    /* Minimal Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(271 100% 65%) 0%, hsl(271 100% 55%) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(224 15% 8% / 0.9), hsl(222 14% 12% / 0.5));
+    
+    /* 3D Effects */
+    --shadow-3d: 0 8px 32px hsl(271 100% 10% / 0.4), 0 2px 8px hsl(271 100% 10% / 0.2);
+    --shadow-3d-hover: 0 20px 60px hsl(271 100% 10% / 0.6), 0 8px 24px hsl(271 100% 10% / 0.3);
+    --transform-3d: perspective(1000px) rotateX(-5deg) rotateY(5deg);
+    --transform-3d-hover: perspective(1000px) rotateX(-10deg) rotateY(10deg) translateZ(20px);
+    
+    /* Glass Effects */
+    --glass-bg: hsl(224 15% 8% / 0.1);
+    --glass-border: hsl(271 100% 65% / 0.2);
+    
+    /* Shadows */
+    --shadow-glow: 0 0 40px hsl(271 100% 65% / 0.3);
+    --shadow-elevation: 0 20px 40px hsl(222 14% 4% / 0.8);
+    
+    /* Animations */
+    --transition-smooth: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    --transition-bounce: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    
+    /* Typography */
+    --font-primary: 'Inter', sans-serif;
+    --font-display: 'Space Grotesk', sans-serif;
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  /* Portfolio is always dark theme - no light mode needed */
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    font-size: clamp(14px, 1.2vw, 18px);
+  }
+
+  body {
+    @apply bg-background text-foreground font-primary;
+    background: radial-gradient(ellipse at top, hsl(271 100% 8%), hsl(222 14% 4%));
+    overflow-x: hidden;
+    min-height: 100vh;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display;
+  }
+}
+
+@layer components {
+  /* 3D Glass Card Effect */
+  .glass-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--shadow-3d);
+    transform-style: preserve-3d;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+
+  .glass-card:hover {
+    box-shadow: var(--shadow-3d-hover);
+    transform: translateY(-8px) scale(1.02);
+  }
+
+  /* 3D Tilt Effect */
+  .tilt-3d {
+    transform-style: preserve-3d;
+    transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+
+  .tilt-3d:hover {
+    transform: var(--transform-3d-hover);
+  }
+
+  /* Advanced 3D Card */
+  .card-3d {
+    transform-style: preserve-3d;
+    transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+    position: relative;
+  }
+
+  .card-3d::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, hsl(271 100% 65% / 0.1), transparent);
+    border-radius: inherit;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+  }
+
+  .card-3d:hover::before {
+    opacity: 1;
+  }
+
+  .card-3d:hover {
+    transform: rotateX(5deg) rotateY(-5deg) translateZ(20px);
+    box-shadow: 
+      0 25px 50px hsl(271 100% 10% / 0.3),
+      0 10px 25px hsl(271 100% 10% / 0.2),
+      inset 0 1px 0 hsl(271 100% 65% / 0.2);
+  }
+
+  /* Minimal Gradient Text */
+  .gradient-text {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Floating Animation */
+  .floating {
+    animation: floating 6s ease-in-out infinite;
+  }
+
+  @keyframes floating {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+  }
+
+  /* 3D Button Hover */
+  .btn-3d {
+    transform-style: preserve-3d;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn-3d::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, hsl(271 100% 80% / 0.4), transparent);
+    transition: left 0.5s ease;
+  }
+
+  .btn-3d:hover::before {
+    left: 100%;
+  }
+
+  .btn-3d:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 10px 25px hsl(271 100% 10% / 0.4);
+  }
+
+  /* Responsive Text Scaling */
+  .responsive-text-xs { font-size: clamp(0.75rem, 2vw, 0.875rem); }
+  .responsive-text-sm { font-size: clamp(0.875rem, 2.5vw, 1rem); }
+  .responsive-text-base { font-size: clamp(1rem, 3vw, 1.125rem); }
+  .responsive-text-lg { font-size: clamp(1.125rem, 3.5vw, 1.25rem); }
+  .responsive-text-xl { font-size: clamp(1.25rem, 4vw, 1.5rem); }
+  .responsive-text-2xl { font-size: clamp(1.5rem, 5vw, 2rem); }
+  .responsive-text-3xl { font-size: clamp(1.875rem, 6vw, 2.5rem); }
+  .responsive-text-4xl { font-size: clamp(2.25rem, 7vw, 3rem); }
+  .responsive-text-5xl { font-size: clamp(3rem, 8vw, 4rem); }
+  .responsive-text-6xl { font-size: clamp(3.75rem, 10vw, 5rem); }
+  .responsive-text-7xl { font-size: clamp(4.5rem, 12vw, 6rem); }
+  .responsive-text-8xl { font-size: clamp(6rem, 15vw, 8rem); }
+
+  /* Device-specific optimizations */
+  @media (max-width: 640px) {
+    .glass-card { backdrop-filter: blur(10px); }
+    .card-3d:hover { transform: scale(1.02) translateY(-5px); }
+  }
+
+  @media (min-width: 1920px) {
+    .container { max-width: 1400px; }
+  }
+
+  @media (min-width: 2560px) {
+    .container { max-width: 1800px; }
+    .glass-card { backdrop-filter: blur(30px); }
+  }
+
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: clamp(4px, 0.5vw, 8px);
+  }
+
+  ::-webkit-scrollbar-track {
+    background: hsl(222 14% 8%);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: hsl(271 100% 65%);
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(271 100% 55%);
+  }
+}
