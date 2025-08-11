@@ -1,25 +1,35 @@
-import { motion } from 'framer-motion';
-import { Mail, Phone, MapPin, Send, Github, Linkedin, Twitter } from 'lucide-react';
-import { Button } from './ui/button';
-import { Input } from './ui/input';
-import { Textarea } from './ui/textarea';
-import { useState } from 'react';
+import { motion } from "framer-motion";
+import {
+  Mail,
+  Phone,
+  MapPin,
+  Send,
+  Github,
+  Linkedin,
+  Twitter,
+} from "lucide-react";
+import { Button } from "./ui/button";
+import { Input } from "./ui/input";
+import { Textarea } from "./ui/textarea";
+import { useState } from "react";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    message: '',
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
   });
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission here
-    console.log('Form submitted:', formData);
+    console.log("Form submitted:", formData);
+    setFormData({ name: "", email: "", subject: "", message: "" });
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
@@ -29,27 +39,31 @@ const Contact = () => {
   const contactInfo = [
     {
       icon: Mail,
-      label: 'Email',
-      value: 'jaybhayeshambho@gmail.com',
-      href: 'mailto:jaybhayeshambho@gmail.com',
+      label: "Email",
+      value: "jaybhayeshambho@gmail.com",
+      href: "mailto:jaybhayeshambho@gmail.com",
     },
     {
       icon: Phone,
-      label: 'Phone',
-      value: '+91 97308-27236',
-      href: 'tel:+919730827236',
+      label: "Phone",
+      value: "+91 97308-27236",
+      href: "tel:+919730827236",
     },
     {
       icon: MapPin,
-      label: 'Location',
-      value: 'Pune Maharashtra, India',
-      href: '#',
+      label: "Location",
+      value: "Pune Maharashtra, India",
+      href: "#",
     },
   ];
 
   const socialLinks = [
-    { icon: Github, href: 'https://github.com/Shambhogit', label: 'GitHub' },
-    { icon: Linkedin, href: 'https://www.linkedin.com/in/shambho-jaybhaye-51b6b5232/', label: 'LinkedIn' },
+    { icon: Github, href: "https://github.com/Shambhogit", label: "GitHub" },
+    {
+      icon: Linkedin,
+      href: "https://www.linkedin.com/in/shambho-jaybhaye-51b6b5232/",
+      label: "LinkedIn",
+    },
     // { icon: Twitter, href: 'https://twitter.com', label: 'Twitter' },
   ];
 
@@ -103,8 +117,9 @@ const Contact = () => {
                   Get in Touch
                 </h3>
                 <p className="text-lg text-muted-foreground mb-8">
-                  I'm always open to discussing new opportunities, creative projects,
-                  or just having a chat about technology and innovation.
+                  I'm always open to discussing new opportunities, creative
+                  projects, or just having a chat about technology and
+                  innovation.
                 </p>
               </div>
 
@@ -154,11 +169,17 @@ const Contact = () => {
             </motion.div>
 
             {/* Contact Form */}
-            <motion.div variants={itemVariants} className="glass-card p-8 rounded-2xl">
+            <motion.div
+              variants={itemVariants}
+              className="glass-card p-8 rounded-2xl"
+            >
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid md:grid-cols-2 gap-6">
                   <div>
-                    <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">
+                    <label
+                      htmlFor="name"
+                      className="block text-sm font-medium text-foreground mb-2"
+                    >
                       Name
                     </label>
                     <Input
@@ -173,7 +194,10 @@ const Contact = () => {
                     />
                   </div>
                   <div>
-                    <label htmlFor="email" className="block text-sm font-medium text-foreground mb-2">
+                    <label
+                      htmlFor="email"
+                      className="block text-sm font-medium text-foreground mb-2"
+                    >
                       Email
                     </label>
                     <Input
@@ -189,7 +213,10 @@ const Contact = () => {
                   </div>
                 </div>
                 <div>
-                  <label htmlFor="subject" className="block text-sm font-medium text-foreground mb-2">
+                  <label
+                    htmlFor="subject"
+                    className="block text-sm font-medium text-foreground mb-2"
+                  >
                     Subject
                   </label>
                   <Input
@@ -204,7 +231,10 @@ const Contact = () => {
                   />
                 </div>
                 <div>
-                  <label htmlFor="message" className="block text-sm font-medium text-foreground mb-2">
+                  <label
+                    htmlFor="message"
+                    className="block text-sm font-medium text-foreground mb-2"
+                  >
                     Message
                   </label>
                   <Textarea
